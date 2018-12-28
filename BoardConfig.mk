@@ -125,9 +125,6 @@ BOARD_CHARGER_DISABLE_INIT_BLANK := true
 
 TARGET_TAP_TO_WAKE_NODE := "/sys/devices/soc/78b7000.i2c/i2c-3/3-0038/dclick_mode"
 
-# Lineage Hardware
-JAVA_SOURCE_OVERLAYS := org.lineageos.hardware|$(DEVICE_PATH)/lineagehw|**/*.java
-
 # Crypto
 TARGET_HW_DISK_ENCRYPTION := true
 
@@ -173,6 +170,9 @@ TARGET_IGNORE_RO_BOOT_SERIALNO := true
 TARGET_INIT_VENDOR_LIB := libinit_zenfone3
 TARGET_RECOVERY_DEVICE_MODULES := libinit_zenfone3
 TARGET_PLATFORM_DEVICE_BASE := /devices/soc/
+
+# Key disabler
+JAVA_SOURCE_OVERLAYS := org.pixelexperience.keydisabler|$(DEVICE_PATH)/keydisabler|**/*.java
 
 # Keymaster
 TARGET_PROVIDES_KEYMASTER := true
