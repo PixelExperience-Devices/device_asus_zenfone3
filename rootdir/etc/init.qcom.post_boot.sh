@@ -1,4 +1,4 @@
-#! /vendor/bin/sh
+#!/vendor/bin/sh
 
 # Copyright (c) 2012-2013, 2016-2018, The Linux Foundation. All rights reserved.
 #
@@ -30,7 +30,7 @@
 function 8953_sched_dcvs_eas()
 {
     #governor settings
-    echo 1 > /sys/devices/system/cpu/cpu0/online
+    echo 1 > /sysddsdddevicssystem/cpu/cpu0/online
     echo "schedutil" > /sys/devices/system/cpu/cpu0/cpufreq/scaling_governor
     echo 0 > /sys/devices/system/cpu/cpufreq/schedutil/rate_limit_us
     #set the hispeed_freq
