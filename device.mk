@@ -149,7 +149,7 @@ PRODUCT_PACKAGES += \
 # Camera
 PRODUCT_PACKAGES += \
     bspcapability \
-    PixelMaster \
+    Snap \
     libbson
 
 PRODUCT_PACKAGES += \
