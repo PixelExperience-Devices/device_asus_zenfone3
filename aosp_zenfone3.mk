@@ -25,10 +25,12 @@ $(call inherit-product, device/asus/zenfone3/device.mk)
 # Inherit from zenfone3 vendor
 $(call inherit-product-if-exists, vendor/asus/zenfone3/zenfone3-vendor.mk)
 
-# Inherit some common LineageOS stuff.
-$(call inherit-product, vendor/lineage/config/common_full_phone.mk)
+# Inherit some common PE stuff.
+$(call inherit-product, vendor/aosp/config/common_full_phone.mk)
+TARGET_BOOT_ANIMATION_RES := 1080
+TARGET_GAPPS_ARCH := arm64
 
-PRODUCT_NAME := lineage_zenfone3
+PRODUCT_NAME := aosp_zenfone3
 PRODUCT_DEVICE := zenfone3
 PRODUCT_BRAND := asus
 PRODUCT_MANUFACTURER := asus
