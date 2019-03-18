@@ -37,10 +37,8 @@ def AddModemAssertion(info, input_zip):
   return
 
 def AddVendorAssertion(info):
-  info.script.AppendExtra('package_extract_file("install/bin/sgdisk_msm8953", "/tmp/sgdisk");');
   info.script.AppendExtra('package_extract_file("install/bin/toybox_msm8953", "/tmp/toybox");');
   info.script.AppendExtra('package_extract_file("install/bin/vendor.sh", "/tmp/vendor.sh");');
-  info.script.AppendExtra('set_metadata("/tmp/sgdisk", "uid", 0, "gid", 0, "mode", 0755);');
   info.script.AppendExtra('set_metadata("/tmp/toybox", "uid", 0, "gid", 0, "mode", 0755);');
   info.script.AppendExtra('set_metadata("/tmp/vendor.sh", "uid", 0, "gid", 0, "mode", 0755);');
   info.script.AppendExtra('ui_print("Checking for vendor partition...");');

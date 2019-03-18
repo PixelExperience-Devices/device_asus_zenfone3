@@ -2,7 +2,7 @@
 
 # /sbin/sh runs out of TWRP.. use it.
 
-PROGS="sgdisk toybox"
+PROGS="toybox"
 RC=0
 # Check for my needed programs
 for PROG in ${PROGS} ; do
@@ -20,12 +20,9 @@ fi
 TOYBOX="/tmp/toybox"
 
 # Get bootdevice.. don't assume /dev/block/sda
-# Dont remove 0 from mmcblk0p, assume system's number is two digit
-
-DISK=`${TOYBOX} readlink /dev/block/bootdevice/by-name/system | ${TOYBOX} sed -e's/p[0-9][0-9]//g'`
 
 # Check for /vendor existence
-VENDOR=`/tmp/sgdisk --pretend --print ${DISK} | ${TOYBOX} grep -c vendor`
+VENDOR=`ls -l /dev/block/by-name/ | ${TOYBOX} grep -c vendor`
 
 if [ ${VENDOR} -ge 1 ] ; then
 # Got it, we're done...
