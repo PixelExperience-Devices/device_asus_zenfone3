@@ -19,10 +19,12 @@ import re
 
 def FullOTA_Assertions(info):
   AddModemAssertion(info, info.input_zip)
+  AddVendorAssertion(info)
   return
 
 def IncrementalOTA_Assertions(info):
   AddModemAssertion(info, info.target_zip)
+  AddVendorAssertion(info)
   return
 
 def AddModemAssertion(info, input_zip):
@@ -33,3 +35,16 @@ def AddModemAssertion(info, input_zip):
     if len(version) and '*' not in version:
       info.script.AppendExtra(('assert(zenfone3.verify_modem("%s") == "1");' % (version)))
   return
+
+def AddVendorAssertion(info):
+  info.script.AppendExtra('package_extract_file("install/bin/sgdisk_msm8953", "/tmp/sgdisk");');
+  info.script.AppendExtra('package_extract_file("install/bin/toybox_msm8953", "/tmp/toybox");');
+  info.script.AppendExtra('package_extract_file("install/bin/vendor.sh", "/tmp/vendor.sh");');
+  info.script.AppendExtra('set_metadata("/tmp/sgdisk", "uid", 0, "gid", 0, "mode", 0755);');
+  info.script.AppendExtra('set_metadata("/tmp/toybox", "uid", 0, "gid", 0, "mode", 0755);');
+  info.script.AppendExtra('set_metadata("/tmp/vendor.sh", "uid", 0, "gid", 0, "mode", 0755);');
+  info.script.AppendExtra('ui_print("Checking for vendor partition...");');
+  info.script.AppendExtra('if run_program("/tmp/vendor.sh") != 0 then');
+  info.script.AppendExtra('abort("Flash Treble TWRP and enable treble first!");');
+  info.script.AppendExtra('endif;');
+
